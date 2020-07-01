@@ -1,20 +1,25 @@
 #include "flop_1_gm.hpp"
 
-int flop(int set, int previousS, int reset, int clk, int *clkA)
+int clkA = 1;
+int q;
+
+int flop(int a, int reset, int clk)
 {
     if (!reset)
     {
-        if (clk > *clkA)
+        if (clk > clkA)
         {
-            *clkA = clk;
-            return set;
+            q = a;
+            clkA = clk;
+            return a;
         }
         else
         {
-            *clkA = clk;
-            return previousS;
+            clkA = clk;
+            return q;
         }
     }
-    *clkA = clk;
-    return 0;
+    clkA = 1;
+    q = 0;
+    return q;
 }
