@@ -1,14 +1,12 @@
-# STRUCTURED CONCEPTION OF INTEGRATED CIRCUITS
+# ADDAC
 
-## ADDAC
-
-### Input:
+## Input:
 
 - A
 - Selector 0
 - Selector 1
 
-### Output:
+## Output:
 
 | Selector0 | Selector1 | S(Output)   |
 | --------- | --------- | ----------- |
