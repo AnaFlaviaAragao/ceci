@@ -9,4 +9,9 @@
  * @return "a" for clk going down->up; last "a" for clk going up->down; or "0" of reset = 1
  */
 int flop(int a, int reset, int clk);
+
+class FLOP
+{
+};
+
 #endif //FLOP_H

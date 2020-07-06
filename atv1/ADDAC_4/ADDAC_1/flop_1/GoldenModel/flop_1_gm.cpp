@@ -1,5 +1,7 @@
 #include "flop_1_gm.hpp"
 
+//TODO: transformar em classe
+
 int clkA = 1;
 int q;
 

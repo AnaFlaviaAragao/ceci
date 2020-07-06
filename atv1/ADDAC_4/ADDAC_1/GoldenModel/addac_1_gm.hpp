@@ -2,6 +2,7 @@
 #define ADDAC_H
 
 #include <utility>
+#include <tuple>
 
 class ADDAC
 {
@@ -26,6 +27,7 @@ public:
 
     int getCin();
     int getAcc();
+    int getOrdem();
 };
 
 #endif // ADDAC_H

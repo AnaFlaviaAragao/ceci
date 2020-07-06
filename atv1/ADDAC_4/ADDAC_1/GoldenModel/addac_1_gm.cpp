@@ -5,9 +5,12 @@
 #include "../mux_2x1_1/GoldenModel/mux_2x1_1_gm.hpp"
 #include "../soma_1/GoldenModel/soma_1_gm.hpp"
 
-#include <tuple>
-
 ADDAC::ADDAC(int order) : S(0), cout(0), acc(0), cinLocal(0), order(order){};
+
+int ADDAC::getOrdem()
+{
+    return order;
+}
 
 std::tuple<int, int> ADDAC::solve(int a, int sel0, int sel1, int clk, int reset, int cin)
 {
@@ -19,6 +22,7 @@ std::tuple<int, int> ADDAC::solve(int a, int sel0, int sel1, int clk, int reset,
         cin = sel0;
         cinLocal = cin;
     }
+    cinLocal = cin;
 
     int soma1 = soma(mux1, acc, cin);
     cout = carry(mux1, acc, cin);
