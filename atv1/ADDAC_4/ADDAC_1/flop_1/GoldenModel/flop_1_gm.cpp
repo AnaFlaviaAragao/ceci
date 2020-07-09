@@ -1,27 +1,22 @@
 #include "flop_1_gm.hpp"
 
-//TODO: transformar em classe
-
-int clkA = 1;
-int q;
-
-int flop(int a, int reset, int clk)
+int FLOP::solve(int a, int reset, int clk)
 {
     if (!reset)
     {
-        if (clk > clkA)
+        if (clk > previousClk)
         {
             q = a;
-            clkA = clk;
+            previousClk = clk;
             return a;
         }
         else
         {
-            clkA = clk;
+            previousClk = clk;
             return q;
         }
     }
-    clkA = 1;
+    previousClk = 1;
     q = 0;
     return q;
 }

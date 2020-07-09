@@ -4,10 +4,17 @@
 #include <utility>
 #include <tuple>
 
+#include "../inv_1/GoldenModel/inv_1_gm.hpp"
+#include "../flop_1/GoldenModel/flop_1_gm.hpp"
+#include "../mux_2x1_1/GoldenModel/mux_2x1_1_gm.hpp"
+#include "../soma_1/GoldenModel/soma_1_gm.hpp"
+
 class ADDAC
 {
 private:
     int cout, acc, S, cinLocal, order;
+
+    FLOP flop;
 
 public:
     ADDAC(int order);
