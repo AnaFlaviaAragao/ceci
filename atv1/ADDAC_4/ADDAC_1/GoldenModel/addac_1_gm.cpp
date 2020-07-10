@@ -24,9 +24,9 @@ std::tuple<int, int> ADDAC::solve(int a, int sel0, int sel1, int clk, int reset,
     int mux2 = mux(mux1, soma1, sel1);
 
     acc = flop.solve(mux2, reset, clk);
-    soma1 = soma(mux1, acc, cin);
-    cout = carry(mux1, acc, cin);
-    mux2 = mux(mux1, soma1, sel1);
+    // soma1 = soma(mux1, acc, cin);
+    // cout = carry(mux1, acc, cin);
+    // mux2 = mux(mux1, soma1, sel1);
 
     S = mux2;
 
