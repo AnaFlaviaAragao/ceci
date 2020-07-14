@@ -1,16 +1,19 @@
 #include <tuple>
+#include <vector>
 
 #include "../ADDAC_1/GoldenModel/addac_1_gm.hpp"
 
-class ADDAC4 {
+class ADDACFull {
  private:
-  int cout, acc, S0, S1, S2, S3, S;
-  ADDAC addac_0, addac_1, addac_2, addac_3;
+  int resolution, cout, acc, S;
+  std::vector<int> output;
+
+  std::vector<ADDAC> addacs;
 
   /**
    * setBitAt sets a bit value from a specific position.
    *
-   * @param position Bit position [0 until WordSize-1]
+   * @param position Bit position [0 until resolution-1]
    * @return Initial value with a masked bit at selected position.
    */
   int setBitAt(int value, int position);
@@ -18,20 +21,23 @@ class ADDAC4 {
   /**
    * getBitAt returns a bit value from a specific position.
    *
-   * @param position Bit position [0 until WordSize-1]
+   * @param position Bit position [0 until resolution-1]
    * @return Bit value [0|1]
    */
   bool getBitAt(int value, int position);
 
   /**
-   * Groups all 1 bit values into a single integer
-   *
-   * @return Word value
+   * Groups all 1 bit values into a single integer result
    */
-  int solution();
+  void groupBits();
 
  public:
-  ADDAC4();
+  /**
+   * Creates an ADDAC with a predefined resolution.
+   *
+   *  @param resolution resolution size.
+   */
+  ADDACFull(int resolution);
 
   /**
    * Main solution for ADDAC4 using paralel COUT in more than 1 bit structure.

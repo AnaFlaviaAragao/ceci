@@ -7,11 +7,11 @@
 int main() {
   std::fstream vectorFile("../simulation/modelsim/addac4.tv",
                           std::fstream::out);
-  ADDAC4 addac4;
 
-  int S, cout, a;
+  const int res = 4;
+  ADDACFull addac(res);
 
-  int sel0 = 0, sel1 = 0, clk = 0, reset = 0, cin = 0;
+  int S, cout, a, sel0, sel1, clk, reset, cin;
 
   // TESTANDO FUNÇÃO S = a (sel0=0, sel1=0)
   // clk_sel0_sel1_a3a2a1a0_cin_s3s2s1s0_cout
@@ -21,42 +21,42 @@ int main() {
   vectorFile << "// clk_sel0_sel1_a3a2a1a0_cin_s3s2s1s0_cout" << std::endl;
   clk = 0;
   sel0 = 0, sel1 = 0, a = 0b0000;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   clk = ~clk & 0x1;  // clk = 1
   sel0 = 0, sel1 = 0, a = 0b0000;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   clk = ~clk & 0x1;  // clk = 0
   sel0 = 0, sel1 = 0, a = 0b1111;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   clk = ~clk & 0x1;  // clk = 1
   sel0 = 0, sel1 = 0, a = 0b1111;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   // TESTANDO FUNÇÃO S = a (sel0=1, sel1=0)
@@ -67,42 +67,42 @@ int main() {
   vectorFile << "// clk_sel0_sel1_a3a2a1a0_cin_s3s2s1s0_cout" << std::endl;
   clk = 0;
   sel0 = 1, sel1 = 0, a = 0b0000;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   clk = ~clk & 0x1;  // clk = 1
   sel0 = 1, sel1 = 0, a = 0b0000;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   clk = ~clk & 0x1;  // clk = 0
   sel0 = 1, sel1 = 0, a = 0b1111;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   clk = ~clk & 0x1;  // clk = 1
   sel0 = 1, sel1 = 0, a = 0b1111;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   // TESTANDO FUNÇÃO S = ACC + a (sel0=0, sel1=1)
@@ -114,42 +114,42 @@ int main() {
   std::cout << "// clk_sel0_sel1_a3a2a1a0_cin_s3s2s1s0_cout" << std::endl;
   clk = 0;
   sel0 = 0, sel1 = 1, a = 0b0000;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   clk = ~clk & 0x1;  // clk = 1
   sel0 = 0, sel1 = 1, a = 0b0000;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   clk = ~clk & 0x1;  // clk = 1
   sel0 = 0, sel1 = 1, a = 0b0001;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   clk = ~clk & 0x1;  // clk = 1
   sel0 = 0, sel1 = 1, a = 0b0001;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   vectorFile << "// ZERANDO" << std::endl;
@@ -157,22 +157,22 @@ int main() {
 
   clk = 0;
   sel0 = 0, sel1 = 0, a = 0b0000;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   clk = ~clk & 0x1;  // clk = 1
   sel0 = 0, sel1 = 0, a = 0b0000;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   vectorFile << "// VARIACAO 1 A 1: S = ACC + a(sel0 = 0, sel1 = 1)"
@@ -185,24 +185,24 @@ int main() {
   sel0 = 0, sel1 = 1;
   a = 0b0001;
   for (int i = 1; i < 18; i++) {
-    std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-    std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-              << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+    std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+    std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+              << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
               << std::endl;
-    vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-               << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
-               << std::endl;
+    vectorFile << clk << "_" << sel0 << "_" << sel1 << "_"
+               << std::bitset<res>(a) << "_" << cin << "_"
+               << std::bitset<res>(S) << "_" << cout << std::endl;
     clk = ~clk & 0x1;  // clk = 1
 
-    std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
+    std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
 
-    std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-              << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+    std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+              << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
               << std::endl;
 
-    vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-               << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
-               << std::endl;
+    vectorFile << clk << "_" << sel0 << "_" << sel1 << "_"
+               << std::bitset<res>(a) << "_" << cin << "_"
+               << std::bitset<res>(S) << "_" << cout << std::endl;
     clk = ~clk & 0x1;  // clk = 0
   }
 
@@ -210,19 +210,21 @@ int main() {
   // sel0 = 0, sel1 = 1, a = 0b1111;
   // std::ti S0, cout) = addac4.solve(a, sel0, sel1, clk, reset,
   // cin); std::cout << clk << "_" << sel0 << "_" << sel1 << "_" <<
-  // std::bitset<4>(a) << "_" << cin << "_" << std::bitset<4>(S) << "_" <<
-  // cout << std::endl; vectorFile << clk << "_" << sel0 << "_" << sel1 << "_"
-  // << std::bitset<4>(a) << "_" << cin << "_" << std::bitset<4>(S) << "_" <<
-  // cout << std::endl;
+  // std::bitset<res>(a) << "_" << cin << "_" <<
+  // std::bitset<res>(S) << "_" << cout << std::endl; vectorFile << clk
+  // << "_" << sel0 << "_" << sel1 << "_"
+  // << std::bitset<res>(a) << "_" << cin << "_" <<
+  // std::bitset<res>(S) << "_" << cout << std::endl;
 
   // clk = ~clk & 0x1; // clk = 1
   // sel0 = 0, sel1 = 1, a = 0b1111;
   // std::ti S0, cout) = addac4.solve(a, sel0, sel1, clk, reset,
   // cin); std::cout << clk << "_" << sel0 << "_" << sel1 << "_" <<
-  // std::bitset<4>(a) << "_" << cin << "_" << std::bitset<4>(S) << "_" <<
-  // cout << std::endl; vectorFile << clk << "_" << sel0 << "_" << sel1 << "_"
-  // << std::bitset<4>(a) << "_" << cin << "_" << std::bitset<4>(S) << "_" <<
-  // cout << std::endl;
+  // std::bitset<res>(a) << "_" << cin << "_" <<
+  // std::bitset<res>(S) << "_" << cout << std::endl; vectorFile << clk
+  // << "_" << sel0 << "_" << sel1 << "_"
+  // << std::bitset<res>(a) << "_" << cin << "_" <<
+  // std::bitset<res>(S) << "_" << cout << std::endl;
 
   // TESTANDO FUNÇÃO S = a (sel0=1, sel1=1)
   // clk_sel0_sel1_a3a2a1a0_cin_s3s2s1s0_cout
@@ -234,22 +236,22 @@ int main() {
   vectorFile << "// clk_sel0_sel1_a3a2a1a0_cin_s3s2s1s0_cout" << std::endl;
   clk = 0;
   sel0 = 1, sel1 = 1, a = 0b0000;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   clk = ~clk & 0x1;  // clk = 1
   sel0 = 1, sel1 = 1, a = 0b0000;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   vectorFile << "// ZERANDO" << std::endl;
@@ -257,22 +259,22 @@ int main() {
 
   clk = 0;
   sel0 = 0, sel1 = 0, a = 0b0000;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   clk = ~clk & 0x1;  // clk = 1
   sel0 = 0, sel1 = 0, a = 0b0000;
-  std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-            << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+  std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+            << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
             << std::endl;
-  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-             << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+  vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+             << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
              << std::endl;
 
   vectorFile << "// VARIACAO 1 A 1: S = ACC - a(sel0 = 1, sel1 = 1)"
@@ -285,22 +287,22 @@ int main() {
   sel0 = 1, sel1 = 1;
   a = 0b0001;
   for (int i = 1; i < 18; i++) {
-    std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-    std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-              << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+    std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+    std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+              << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
               << std::endl;
-    vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-               << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
-               << std::endl;
+    vectorFile << clk << "_" << sel0 << "_" << sel1 << "_"
+               << std::bitset<res>(a) << "_" << cin << "_"
+               << std::bitset<res>(S) << "_" << cout << std::endl;
     clk = ~clk & 0x1;  // clk = 1
 
-    std::tie(S, cout) = addac4.solve(a, sel0, sel1, clk, reset, cin);
-    std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-              << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
+    std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
+    std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
+              << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout
               << std::endl;
-    vectorFile << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<4>(a)
-               << "_" << cin << "_" << std::bitset<4>(S) << "_" << cout
-               << std::endl;
+    vectorFile << clk << "_" << sel0 << "_" << sel1 << "_"
+               << std::bitset<res>(a) << "_" << cin << "_"
+               << std::bitset<res>(S) << "_" << cout << std::endl;
     clk = ~clk & 0x1;  // clk = 0
   }
 
@@ -308,17 +310,19 @@ int main() {
   // sel0 = 1, sel1 = 1, a = 0b1111;
   // std::ti S0, cout) = addac4.solve(a, sel0, sel1, clk, reset,
   // cin); std::cout << clk << "_" << sel0 << "_" << sel1 << "_" <<
-  // std::bitset<4>(a) << "_" << cin << "_" << std::bitset<4>(S) << "_" <<
-  // cout << std::endl; vectorFile << clk << "_" << sel0 << "_" << sel1 << "_"
-  // << std::bitset<4>(a) << "_" << cin << "_" << std::bitset<4>(S) << "_" <<
-  // cout << std::endl;
+  // std::bitset<res>(a) << "_" << cin << "_" <<
+  // std::bitset<res>(S) << "_" << cout << std::endl; vectorFile << clk
+  // << "_" << sel0 << "_" << sel1 << "_"
+  // << std::bitset<res>(a) << "_" << cin << "_" <<
+  // std::bitset<res>(S) << "_" << cout << std::endl;
 
   // clk = ~clk & 0x1; // clk = 1
   // sel0 = 1, sel1 = 1, a = 0b1111;
   // std::ti S0, cout) = addac4.solve(a, sel0, sel1, clk, reset,
   // cin); std::cout << clk << "_" << sel0 << "_" << sel1 << "_" <<
-  // std::bitset<4>(a) << "_" << cin << "_" << std::bitset<4>(S) << "_" <<
-  // cout << std::endl; vectorFile << clk << "_" << sel0 << "_" << sel1 << "_"
-  // << std::bitset<4>(a) << "_" << cin << "_" << std::bitset<4>(S) << "_" <<
-  // cout << std::endl;
+  // std::bitset<res>(a) << "_" << cin << "_" <<
+  // std::bitset<res>(S) << "_" << cout << std::endl; vectorFile << clk
+  // << "_" << sel0 << "_" << sel1 << "_"
+  // << std::bitset<res>(a) << "_" << cin << "_" <<
+  // std::bitset<res>(S) << "_" << cout << std::endl;
 }
