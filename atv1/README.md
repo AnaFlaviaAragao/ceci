@@ -14,3 +14,13 @@
 | 0         | 1         | S = ACC + A |
 | 1         | 0         | S = ~A      |
 | 1         | 1         | S = ACC - A |
+
+## Executing
+
+Go to any ADDAC GoldenModel folder and type into your terminal:
+
+`make build`
+
+then:
+
+`./main.exe`
