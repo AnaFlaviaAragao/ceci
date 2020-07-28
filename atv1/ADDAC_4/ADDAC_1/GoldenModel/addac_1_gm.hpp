@@ -1,3 +1,5 @@
+
+
 #ifndef ADDAC_H
 #define ADDAC_H
 
@@ -11,7 +13,7 @@
 
 class ADDAC {
  private:
-  int cout, acc, S, cin, order;
+  int cout, acc, accA, S, cin, order;
 
   FLOP flop;
 

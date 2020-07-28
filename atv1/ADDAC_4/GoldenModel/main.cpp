@@ -184,7 +184,7 @@ int main() {
   clk = 0;  // clk = 0
   sel0 = 0, sel1 = 1;
   a = 0b0001;
-  for (int i = 1; i < 18; i++) {
+  for (int i = 1; i < 17; i++) {
     std::tie(S, cout) = addac.solve(a, sel0, sel1, clk, reset, cin);
     std::cout << clk << "_" << sel0 << "_" << sel1 << "_" << std::bitset<res>(a)
               << "_" << cin << "_" << std::bitset<res>(S) << "_" << cout

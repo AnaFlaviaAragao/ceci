@@ -16,6 +16,14 @@ class FLOP {
    * of reset = 1
    */
   int solve(int a, int reset, int clk);
+
+  /**
+   * @return previous clock locally stored.
+   *
+   */
+  int getPreviousClk();
+
+  FLOP();
 };
 
 #endif  // FLOP_H
