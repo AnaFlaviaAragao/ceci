@@ -2,7 +2,6 @@
 #include <string>
 
 #include "MainController.hpp"
-#include "Operation.hpp"
 #include "values.hpp"
 
 using namespace std;

@@ -1,2 +1,2 @@
 build:
-	g++ -g controller.cpp -o main.exe
+	g++ -g -std=c++17 *.cpp -o main.exe
