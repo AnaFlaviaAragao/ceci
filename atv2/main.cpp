@@ -12,7 +12,8 @@ int main() {
 
   int reset = 0;
 
-  Instrucao instrucoes[] = {LW, SW};
+  Instrucao instrucoes[] = {ADD,  SUB, AND, OR,  XOR, LW, ADDI,
+                            XORI, ORI, SW,  BEQ, BNE, JAL};
 
   for (Instrucao instrucao : instrucoes) {
     cout << InstructionsNames[instrucao] << endl;
