@@ -2,21 +2,21 @@
 
 MainController::MainController() : state(S0) {}
 
-Estado MainController::defineNextState(int reset, int clk, int opcode) {
+Estado MainController::getNextState() { return nextState; }
+
+Estado MainController::defineNextState(int reset, int clk,
+                                       Instrucao instrucao) {
   if (reset == 1) {
     state = S0;
     return state;
   }
-
-  const int algo = 0b111;
-  int a = 0b1;
 
   switch (state) {
     case S0:
       nextState = S1;
       break;
     case S1:
-      switch (opcode) {
+      switch (instrucao) {
         case SW:
         case LW:
           nextState = S2;
@@ -36,9 +36,9 @@ Estado MainController::defineNextState(int reset, int clk, int opcode) {
         case XORI:
           nextState = S9;
           break;
-        // case J:
-        //   nextState = S11;
-        //   break;
+        case JAL:
+          nextState = S11;
+          break;
         case BNE:
           nextState = S12;
           break;
@@ -48,7 +48,7 @@ Estado MainController::defineNextState(int reset, int clk, int opcode) {
       }
       break;
     case S2:
-      switch (opcode) {
+      switch (instrucao) {
         case LW:
           nextState = S3;
           break;
@@ -98,8 +98,21 @@ Estado MainController::defineNextState(int reset, int clk, int opcode) {
     state = nextState;
   }
 
+  std::cout << "RESET: " << reset << " CLOCK: " << clk << " ESTADO: S" << state
+            << std::endl;
+
   clkA = clk;
   return state;
+}
+
+void MainController::run(Instrucao instrucao, int reset) {
+  int clk = 0;
+
+  do {
+    defineNextState(reset, clk, instrucao);
+    clk = ~clk & 0x1;
+  } while (nextState != S0);
+  defineNextState(reset, clk, instrucao);
 }
 
 Estado MainController::getState() { return state; }

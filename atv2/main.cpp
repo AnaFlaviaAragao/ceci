@@ -8,29 +8,14 @@ using namespace std;
 
 int main() {
   MainController controller;
-  Estado state;
+  Instrucao instrucao;
 
-  int reset, clk, opcode = 0;
+  int reset = 0;
 
-  reset = 1;
-  clk = 0;
-  state = controller.defineNextState(reset, clk, opcode);
-  cout << "CLOCK: " << clk << " ESTADO: S" << state << endl;
+  Instrucao instrucoes[] = {LW, SW};
 
-  clk = ~clk & 0x1;
-  state = controller.defineNextState(reset, clk, opcode);
-  cout << "CLOCK: " << clk << " ESTADO: S" << state << endl;
-
-  // É interessante forçar o estado a ir para 'S0' independente
-  // de seu valor, quando reset passar 0 -> 1.
-
-  reset = 0;
-
-  clk = ~clk & 0x1;  // clk = 0;
-  state = controller.defineNextState(reset, clk, opcode);
-  cout << "CLOCK: " << clk << " ESTADO: S" << state << endl;
-
-  clk = ~clk & 0x1;
-  state = controller.defineNextState(reset, clk, opcode);
-  cout << "CLOCK: " << clk << " ESTADO: S" << state << endl;
+  for (Instrucao instrucao : instrucoes) {
+    cout << InstructionsNames[instrucao] << endl;
+    controller.run(instrucao, reset);
+  }
 }
