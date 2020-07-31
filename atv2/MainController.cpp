@@ -4,8 +4,7 @@ MainController::MainController() : state(S0) {}
 
 Estado MainController::getNextState() { return nextState; }
 
-Estado MainController::defineNextState(int reset, int clk,
-                                       Instrucao instrucao) {
+Estado MainController::defineNextState(int clk) {
   if (reset == 1) {
     state = S0;
     return state;
@@ -105,14 +104,17 @@ Estado MainController::defineNextState(int reset, int clk,
   return state;
 }
 
-void MainController::run(Instrucao instrucao, int reset) {
+void MainController::run(Instrucao inst, int res) {
   int clk = 0;
 
+  instrucao = inst;
+  reset = res;
+
   do {
-    defineNextState(reset, clk, instrucao);
+    defineNextState(clk);
     clk = ~clk & 0x1;
   } while (nextState != S0);
-  defineNextState(reset, clk, instrucao);
+  defineNextState(clk);
 }
 
 Estado MainController::getState() { return state; }

@@ -8,11 +8,27 @@
 class MainController {
  private:
   Estado state, nextState;
-  int clkA;
+  Instrucao instrucao;
+  int reset, clkA;
+
+  /**
+   * defineNextState changes MainController states based on clock and
+   * instructions.
+   *
+   * @return the next state based on actual state.
+   */
+  Estado defineNextState(int clk);
 
  public:
   MainController();
-  Estado defineNextState(int reset, int clk, Instrucao instrucao);
+
+  /**
+   * run emulates a complete run with a predefined instruction.
+   *
+   * @param instrucao instruction to be fetched.
+   * @param reset async reset pin.
+   *
+   */
   void run(Instrucao instrucao, int reset);
 
   Estado getState();

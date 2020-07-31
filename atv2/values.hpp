@@ -1,24 +1,7 @@
 #ifndef VALUES_H
 #define VALUES_H
 
-/*
-// R-TYPE
-const int ADD = 0b011001100100000, SUB = 0b011001100, AND = 0b01100111110,
-          OR = 0b01100111100, XOR = 0b01100111000;
-
-// L-TYPE
-const int LW = 0b00000110100;
-
-// I-TYPE
-const int ADDI = 0b0010011000, XORI = 0b0010011100, ORI = 0b0010011110;
-
-// S-TYPE
-const int SW = 0b01000110100;
-
-// SB-TYPE
-const int BEQ = 0b11001110000, BNE = 0b11001110010;
-*/
-
+// Instrucao enumeares some possible instructions in multiple formats.
 enum Instrucao {
   // R-TYPE
   ADD,
@@ -46,10 +29,12 @@ enum Instrucao {
   JAL
 };
 
+// InstructionsNames for printing
 const std::string InstructionsNames[] = {"ADD", "SUB",  "AND",  "OR",  "XOR",
                                          "LW",  "ADDI", "XORI", "ORI", "SW",
                                          "BEQ", "BNE",  "JAL"};
 
+// Estado defines each possible state for MainController
 enum Estado {
   S0,   // Fetch
   S1,   // Decode
