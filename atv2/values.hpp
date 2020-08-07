@@ -1,6 +1,7 @@
 #ifndef VALUES_H
 #define VALUES_H
 
+#include <string>
 // Instrucao enumeares some possible instructions in multiple formats.
 enum Instrucao {
   // R-TYPE
@@ -50,5 +51,13 @@ enum Estado {
   S11,  // Jump
   S12   // Branch NE
 };
+
+namespace ALU {
+
+enum ALUInput { AND = 0b0000, OR = 0b0001, ADD = 0b0010, SUB = 0b0110 };
+
+enum ALUOp { LS = 0b00, BEQ = 0b01, R = 0b10 };
+
+};  // namespace ALU
 
 #endif  // VALUES_H

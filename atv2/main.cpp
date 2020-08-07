@@ -1,21 +1,21 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "MainController.hpp"
+#include "utils.hpp"
 #include "values.hpp"
 
 using namespace std;
 
 int main() {
   MainController controller;
-  Instrucao instrucao;
+
+  auto instrucoes = getInstructions("instructions.txt");
 
   int reset = 0;
 
-  Instrucao instrucoes[] = {ADD,  SUB, AND, OR,  XOR, LW, ADDI,
-                            XORI, ORI, SW,  BEQ, BNE, JAL};
-
-  for (Instrucao instrucao : instrucoes) {
+  for (auto instrucao : instrucoes) {
     cout << InstructionsNames[instrucao] << endl;
     controller.run(instrucao, reset);
   }
