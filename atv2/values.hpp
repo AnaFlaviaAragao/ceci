@@ -30,6 +30,8 @@ enum Instrucao {
   JAL
 };
 
+enum Format { Rtype, Itype, Stype, SBtype, Utype, UJtype };
+
 // InstructionsNames for printing
 const std::string InstructionsNames[] = {"ADD", "SUB",  "AND",  "OR",  "XOR",
                                          "LW",  "ADDI", "XORI", "ORI", "SW",

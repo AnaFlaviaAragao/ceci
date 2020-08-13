@@ -1,9 +1,11 @@
 #include "ALUDecoder.hpp"
 
-ALU::ALUInput ALUDecoder::decode(Instruction ins) {
+ALUDecoder::ALUDecoder() {}
+
+ALU::ALUInput ALUDecoder::decode(ALU::ALUOp op, Instruction ins) {
   ALU::ALUInput input;
 
-  switch (ins.AOp) {
+  switch (op) {
     case ALU::LS:
       input = ALU::ADD;
       break;
@@ -32,6 +34,7 @@ ALU::ALUInput ALUDecoder::decode(Instruction ins) {
           break;
       }
   }
-
+  std::cout << "ALU Control Input: " << std::bitset<4>(input) << "\n"
+            << std::endl;
   return input;
 }

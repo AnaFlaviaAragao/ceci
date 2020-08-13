@@ -3,13 +3,19 @@
 
 #include <iostream>
 
+#include "ALUDecoder.hpp"
+#include "Instruction.hpp"
 #include "values.hpp"
 
 class MainController {
  private:
   Estado state, nextState;
-  Instrucao instrucao;
   int reset, clkA;
+
+  int IorD, ALUSrcA, ALUSrcB, ALUOp, PCSrc, RegDst, MemtoReg;
+  bool IRWrite, PCWrite, RegWrite, MemWrite, BranchEQ, BranchNE;
+
+  ALUDecoder aluDecoder;
 
   /**
    * defineNextState changes MainController states based on clock and
@@ -17,7 +23,7 @@ class MainController {
    *
    * @return the next state based on actual state.
    */
-  Estado defineNextState(int clk);
+  Estado defineNextState(int clk, Instruction instrucao);
 
  public:
   MainController();
@@ -29,7 +35,8 @@ class MainController {
    * @param reset async reset pin.
    *
    */
-  void run(Instrucao instrucao, int reset);
+  void run(Instruction inst, int reset);
+  void printState();
 
   Estado getState();
   Estado getNextState();

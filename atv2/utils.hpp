@@ -7,8 +7,9 @@
 #include <string>
 #include <vector>
 
+#include "Instruction.hpp"
 #include "values.hpp"
 
-std::vector<Instrucao> getInstructions(std::string file);
+std::vector<Instruction> getInstructions(std::string file);
 
 #endif /* UTILS */
